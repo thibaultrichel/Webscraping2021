@@ -34,7 +34,7 @@ def news_getNewsTitles(nbPage):
 def news_toDataframe(list_):
     newsTitles = [data[0] for data in list_]
     newsDates = [data[1] for data in list_]
-    df_barrel = pd.DataFrame(list(zip(newsDates, newsTitles)), columns=['Date', 'Prix du barril'])
+    df_barrel = pd.DataFrame(list(zip(newsDates, newsTitles)), columns=['Date', 'news Titles'])
     return df_barrel
 
 

@@ -24,12 +24,12 @@ def getFinalDataframe(covidDF, barrelDF, newsDF, writeToCsv=False):
 if __name__ == '__main__':
     firstLockdownFrance = '17/03/2020'
     days = 410  # Number of days from the beginning of the 1st lockdown in France
-    pathToChromeDriver = '/Users/thibaultrichel/PycharmProjects/chromedriver'
+    pathToChromeDriver = './chromedriver.exe'
     driver = webdriver.Chrome(pathToChromeDriver)
 
     covid = getCovidData(driver, 30)
     barrel = getBarrelData(driver, '01/04/2021')
     news = getNewsData(2)
 
-    df = getFinalDataframe(covid, barrel, news, writeToCsv=False)
+    df = getFinalDataframe(covid, barrel, news, writeToCsv=True)
     print(df)

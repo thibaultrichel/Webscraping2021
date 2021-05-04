@@ -2,3 +2,4 @@
 /venv/
 /dftest.csv
 __pycache__/
+/chromedriver.exe
