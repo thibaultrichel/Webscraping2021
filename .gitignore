@@ -1,2 +1,4 @@
 /.idea
 /venv/
+/dftest.csv
+__pycache__/
