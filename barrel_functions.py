@@ -15,7 +15,7 @@ def barrel_closePopups(driv):
     driv.find_element_by_id('onetrust-accept-btn-handler').click()
     try:
         print("Waiting for second popup to show...")
-        time.sleep(3)
+        time.sleep(2)
         wait = WebDriverWait(driv, 15)
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'largeBannerCloser'))).click()
     except TimeoutException:

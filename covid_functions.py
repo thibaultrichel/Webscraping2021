@@ -23,7 +23,7 @@ def covid_getNbCases(driver):
     nbCases = driver.find_elements_by_class_name('counter-container')
     for container in nbCases:
         if "cas confirmés" in container.text:
-            value = nbCases[0].find_element_by_class_name('value').text
+            value = container.find_element_by_class_name('value').text
             return int(value.replace(' ', ''))
     return None
 
@@ -32,7 +32,7 @@ def covid_getNbDeaths(driver):
     nbDoses = driver.find_elements_by_class_name('counter-container')
     for container in nbDoses:
         if "cumul des décès" in container.text:
-            value = nbDoses[2].find_element_by_class_name('value').text
+            value = container.find_element_by_class_name('value').text
             return int(value.replace(' ', ''))
     return None
 

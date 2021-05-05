@@ -15,7 +15,7 @@ def news_handleDate(strDate):
 
 def news_getNewsTitles(nbPage):
     url = 'https://www.leguideboursier.com/actualite-boursiere/matieres-premieres/petrole.php?p=' + str(nbPage)
-    time.sleep(20)
+    time.sleep(10)
     page = requests.get(url)
     soup = BeautifulSoup(page.text, 'html.parser')
 
@@ -34,7 +34,7 @@ def news_getNewsTitles(nbPage):
 def news_toDataframe(list_):
     newsTitles = [data[0] for data in list_]
     newsDates = [data[1] for data in list_]
-    df_barrel = pd.DataFrame(list(zip(newsDates, newsTitles)), columns=['Date', 'news Titles'])
+    df_barrel = pd.DataFrame(list(zip(newsDates, newsTitles)), columns=['Date', 'News Titles'])
     return df_barrel
 
 
