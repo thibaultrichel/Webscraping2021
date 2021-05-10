@@ -18,6 +18,8 @@ datesWithNews = [date for i, date in enumerate(dates.values) if type(newsTitles.
 datesWithNews = [datesWithNews[i] for i in range(len(datesWithNews)) if i % 5 == 0]
 barrelPriceWithNews = [price for i, price in enumerate(barrelPrice.values) if type(newsTitles.values[i]) != float]
 barrelPriceWithNews = [barrelPriceWithNews[i] for i in range(len(barrelPriceWithNews)) if i % 5 == 0]
+newsTitlesOk = [title for i, title in enumerate(newsTitles) if type(newsTitles.values[i]) != float]
+newsTitlesOk = [newsTitlesOk[i] for i in range(len(newsTitlesOk)) if i % 5 == 0]
 
 # graph nb de cas
 ax1 = plt.subplot(2, 1, 1)
@@ -48,20 +50,34 @@ plt.ylabel('Prix du baril en €')
 plt.xticks(np.arange(0, len(dates), 20), rotation='vertical')
 plt.legend()
 
-bPrice = barrelPrice.values
-
-for i in range(len(datesWithNews)):
-    annot = ax.annotate(str(datesWithNews[i]),
-                        xy=(i, barrelPriceWithNews[i]), xycoords='data',
-                        xytext=(20, 20), textcoords='offset points',
-                        bbox=dict(boxstyle="round", fc="w"),
-                        arrowprops=dict(arrowstyle="->")
-                        )
-    # annot.set_visible(False)
+annot = ax.annotate("", xy=(0, 0), xytext=(20, 20), textcoords="offset points",
+                    bbox=dict(boxstyle="round", fc="w"),
+                    arrowprops=dict(arrowstyle="->"))
+annot.set_visible(False)
 
 
-def hover():
-    pass    # ???
+def update_annot(ind):
+    pos = sc.get_offsets()[ind["ind"][0]]
+    annot.xy = pos
+    text = "{}: {}".format(" ".join([datesWithNews[n] for n in ind["ind"]]),
+                           " ".join([newsTitlesOk[n] for n in ind["ind"]]))
+    annot.set_text(text)
 
+
+def hover(event):
+    vis = annot.get_visible()
+    if event.inaxes == ax:
+        cont, ind = sc.contains(event)
+        if cont:
+            update_annot(ind)
+            annot.set_visible(True)
+            fig.canvas.draw_idle()
+        else:
+            if vis:
+                annot.set_visible(False)
+                fig.canvas.draw_idle()
+
+
+fig.canvas.mpl_connect("motion_notify_event", hover)
 
 plt.show()
