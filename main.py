@@ -73,4 +73,4 @@ if __name__ == '__main__':
     df = getFinalDataframe(covid, barrel, news, writeToCsv=True)
     print(f"\n\n{df}")
 
-    showPlots(df)
+    showPlots()
