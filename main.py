@@ -1,7 +1,8 @@
 from selenium import webdriver
-from covid_functions import getCovidData
-from barrel_functions import getBarrelData
-from news_functions import getNewsData
+from functions.covid_functions import getCovidData
+from functions.barrel_functions import getBarrelData
+from functions.news_functions import getNewsData
+from functions.show_plots import showPlots
 import pandas as pd
 from datetime import datetime
 pd.set_option('display.width', 200)
@@ -71,3 +72,5 @@ if __name__ == '__main__':
 
     df = getFinalDataframe(covid, barrel, news, writeToCsv=True)
     print(f"\n\n{df}")
+
+    showPlots(df)
