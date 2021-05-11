@@ -15,8 +15,11 @@ barrelPrice = df['BarrelPrice'].iloc[::-1]
 newsTitles = df['News Titles'].iloc[::-1]
 
 datesWithNews = [date for i, date in enumerate(dates.values) if type(newsTitles.values[i]) != float]
+datesWithNews = [str(datesWithNews[i]) for i in range(len(datesWithNews)) if i % 5 == 0]
 barrelPriceWithNews = [price for i, price in enumerate(barrelPrice.values) if type(newsTitles.values[i]) != float]
+barrelPriceWithNews = [barrelPriceWithNews[i] for i in range(len(barrelPriceWithNews)) if i % 5 == 0]
 newsTitlesOk = [title for i, title in enumerate(newsTitles) if type(newsTitles.values[i]) != float]
+newsTitlesOk = [newsTitlesOk[i] for i in range(len(newsTitlesOk)) if i % 5 == 0]
 
 # graph nb de cas
 ax1 = plt.subplot(2, 1, 1)
